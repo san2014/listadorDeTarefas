@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "/home/san/Desenvolvimento/Mobile/ListadorDeTarefas/node_modules/firebase/firebase.d.ts",
+    "raw": "file:node_modules/firebase/firebase.d.ts",
+    "typings": "/home/san/Desenvolvimento/Mobile/ListadorDeTarefas/node_modules/firebase/firebase.d.ts"
+  }
+}
