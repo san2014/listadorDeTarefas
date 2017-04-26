@@ -22,7 +22,7 @@
               <ion-label floating>
                 E-mail
               </ion-label>
-              <ion-input></ion-input>
+              <ion-input [(ngModel)]="credencial.email"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -33,14 +33,14 @@
               <ion-label floating>
                 Senha
               </ion-label>
-              <ion-input type="password"></ion-input>
+              <ion-input type="password" [(ngModel)]="credencial.senha"></ion-input>
             </ion-item>
           </ion-col>        
         </ion-row>
 
         <ion-row>
           <ion-col>
-            <button ion-button full>
+            <button ion-button full (click)="doRegister()">
               Registrar
             </button>
           </ion-col>

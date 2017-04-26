@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Registrar } from "../registrar/registrar";
 
-import { Registrar } from './../registrar/registrar';
 
 @IonicPage()
 @Component({
@@ -13,11 +13,8 @@ export class Login {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad Login');
-  }
-
   registrar(){
+    console.log('alert');
     this.navCtrl.push(Registrar);
   }
 

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
+import { Credencial } from './../../model/credencial';
+import { LoginProvider } from './../../providers/login-provider';
 
 /**
  * Generated class for the Registrar page.
@@ -14,11 +16,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class Registrar {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  credencial: Credencial;
+
+  constructor(
+      public navCtrl: NavController, 
+      public loginProvider: LoginProvider) {
+    
+    this.credencial = new Credencial();
+
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad Registrar');
+  doRegister(){
+    this.loginProvider.registrarUsuario(this.credencial);
   }
 
 }

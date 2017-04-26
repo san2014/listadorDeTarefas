@@ -9,7 +9,9 @@ import { HomePage } from '../pages/home/home';
 import { Login } from './../pages/login/login';
 import { LoginModule } from './../pages/login/login.module';
 import { Registrar } from './../pages/registrar/registrar';
-import firebase from 'firebase';
+import { LoginProvider } from './../providers/login-provider';
+import firebase from 'firebase'
+import { HttpModule } from "@angular/http";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBXIOh7VLlwoRf--lHwInIqen7gVIezizc",
@@ -28,6 +30,7 @@ const firebaseConfig = {
     Registrar
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp)
   ],
@@ -42,7 +45,8 @@ const firebaseConfig = {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    LoginModule
+    LoginModule,
+    LoginProvider
   ]
 })
 export class AppModule {
