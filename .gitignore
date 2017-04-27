@@ -21,6 +21,7 @@ dist/
 
 tmp/
 temp/
+build/
 $RECYCLE.BIN/
 
 .DS_Store
