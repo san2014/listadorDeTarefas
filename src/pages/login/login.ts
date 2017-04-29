@@ -3,8 +3,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { Registrar } from "../registrar/registrar";
 import { LoginProvider } from './../../providers/login-provider';
-import { HomePage } from './../home/home';
-
+import { TarefasList } from './../tarefas-list/tarefas-list';
 
 @IonicPage()
 @Component({
@@ -27,8 +26,10 @@ export class Login {
 
     this.credencial = new Credencial();
 
+    console.log('init app');
+
     this.loginProvider.loginSucessoEventEmitter.subscribe(
-      user => this.navCtrl.setRoot(HomePage),
+      user => this.navCtrl.setRoot(TarefasList),
       error => console.log(error)
     )
 

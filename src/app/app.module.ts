@@ -3,15 +3,19 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
+import { HttpModule } from "@angular/http";
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 import { Login } from './../pages/login/login';
 import { LoginModule } from './../pages/login/login.module';
 import { Registrar } from './../pages/registrar/registrar';
 import { LoginProvider } from './../providers/login-provider';
 import firebase from 'firebase'
-import { HttpModule } from "@angular/http";
+
+import { TarefasAdd } from './../pages/tarefas-add/tarefas-add';
+import { TarefasListItem } from './../components/tarefas-list-item/tarefas-list-item';
+import { TarefasList } from './../pages/tarefas-list/tarefas-list';
+import { TarefaProvider } from './../providers/tarefa-provider';
+import { LovProvider } from './../providers/lov-provider';
 
 const firebaseConfig = {
     apiKey: "AIzaSyBXIOh7VLlwoRf--lHwInIqen7gVIezizc",
@@ -25,9 +29,11 @@ const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     Login,
-    Registrar
+    Registrar,
+    TarefasList,
+    TarefasListItem,
+    TarefasAdd
   ],
   imports: [
     HttpModule,
@@ -37,16 +43,20 @@ const firebaseConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
     Login,
-    Registrar
+    Registrar,
+    TarefasList,
+    TarefasListItem,
+    TarefasAdd    
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LoginModule,
-    LoginProvider
+    LoginProvider,
+    TarefaProvider,
+    LovProvider
   ]
 })
 export class AppModule {
