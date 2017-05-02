@@ -3,7 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { HttpModule } from "@angular/http";
+import { HttpModule, Http } from "@angular/http";
 import { MyApp } from './app.component';
 import { Login } from './../pages/login/login';
 import { LoginModule } from './../pages/login/login.module';
@@ -16,6 +16,8 @@ import { TarefasListItem } from './../components/tarefas-list-item/tarefas-list-
 import { TarefasList } from './../pages/tarefas-list/tarefas-list';
 import { TarefaProvider } from './../providers/tarefa-provider';
 import { LovProvider } from './../providers/lov-provider';
+import { TranslateModule, TranslateStaticLoader, TranslateLoader } from 'ng2-translate';
+import { Linguagem } from './../pages/linguagem/linguagem';
 
 const firebaseConfig = {
     apiKey: "AIzaSyBXIOh7VLlwoRf--lHwInIqen7gVIezizc",
@@ -26,6 +28,12 @@ const firebaseConfig = {
     messagingSenderId: "627770590744"
 };
 
+export function createTranslateLoader(http: Http){
+  
+  return new TranslateStaticLoader(http, './assets/i18n/', '.json');
+
+}
+
 @NgModule({
   declarations: [
     MyApp,
@@ -33,12 +41,18 @@ const firebaseConfig = {
     Registrar,
     TarefasList,
     TarefasListItem,
-    TarefasAdd
+    TarefasAdd,
+    Linguagem
   ],
   imports: [
     HttpModule,
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    TranslateModule.forRoot({
+      provide: TranslateLoader,
+      useFactory: (createTranslateLoader),
+      deps: [Http]
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -47,7 +61,8 @@ const firebaseConfig = {
     Registrar,
     TarefasList,
     TarefasListItem,
-    TarefasAdd    
+    TarefasAdd,
+    Linguagem
   ],
   providers: [
     StatusBar,

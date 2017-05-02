@@ -3,61 +3,91 @@
 
   <ion-card>
     <ion-card-header>
-      Login
+      {{ "pages.login.title" | translate }}
     </ion-card-header>
     <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <ion-item>
-              <ion-label floating>
-                E-mail
-              </ion-label>
-              <ion-input name="email" [(ngModel)]="credencial.email"></ion-input>
-            </ion-item>
-          </ion-col>
-        </ion-row>
+      <form [formGroup]="loginForm">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label floating>
+                  {{ "global.inputs.email" | translate }}
+                </ion-label>
+                <ion-input formControlName="email" name="email" [(ngModel)]="credencial.email"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
 
-        <ion-row>
-          <ion-col>
-            <ion-item>
-              <ion-label floating>
-                Senha
-              </ion-label>
-              <ion-input name="senha" type="password" [(ngModel)]="credencial.senha"></ion-input>
-            </ion-item>
-          </ion-col>        
-        </ion-row>
+          <ion-row *ngIf="!loginForm.controls.email.valid && loginForm.controls.email.dirty">
+          
+            <ion-col *ngIf="loginForm.controls.email.errors.required">
+              <span>O campo e-mail obrigatório para logar.</span>
+            </ion-col>
 
-        <ion-row>
-          <ion-col>
-            <button ion-button color="primary" class="btnLogin" (click)="loginComCredencial()">
-              Logar
-            </button>
-          </ion-col>
-        </ion-row>
+            <ion-col *ngIf="loginForm.controls.email.errors.email">
+              <span>O e-mail informado é inválido.</span>
+            </ion-col>
 
-        <ion-row>
+          </ion-row>
 
-          <ion-col width-50>
-            <button ion-button full  class="btnLogin" (click)="loginComFacebook()">
-              Login com Facebook
-            </button>
-          </ion-col>
+          <ion-row>
+           
+            <ion-col>
+              <ion-item>
+                <ion-label floating>
+                  {{ "global.inputs.password" | translate }}
+                </ion-label>
+                <ion-input formControlName="senha" name="senha" type="password" [(ngModel)]="credencial.senha"></ion-input>
+              </ion-item>
+            </ion-col>   
 
-          <ion-col width-50>
-            <button ion-button full  class="btnLogin" (click)="loginComGoogle()">
-              Login com Google
-            </button>          
-          </ion-col>
-        </ion-row>
+          </ion-row>
 
-        <ion-row>
-          <ion-col >
-            <a (click)="registrar()">Registra-se</a>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+          <ion-row *ngIf="!loginForm.controls.senha.valid && loginForm.controls.senha.dirty">
+          
+            <ion-col *ngIf="loginForm.controls.senha.errors.required">
+              <span>O campo senha é obrigatório para logar.</span>
+            </ion-col>
+
+            <ion-col *ngIf="loginForm.controls.senha.errors.minlength">
+              <span>O campo senha deve ter no mínimo 6 caractres.</span>
+            </ion-col>    
+
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <button ion-button color="primary" class="btnLogin" (click)="loginComCredencial()" [disabled]="loginForm.invalid">
+                {{ "global.buttons.login" | translate }}
+              </button>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+
+            <ion-col width-50>
+              <button ion-button full  class="btnLogin" (click)="loginComFacebook()">
+                {{ "global.buttons.login_facebook" | translate }}
+              </button>
+            </ion-col>
+
+            <ion-col width-50>
+              <button ion-button full  class="btnLogin" (click)="loginComGoogle()">
+                {{ "global.buttons.login_google" | translate }}
+              </button>          
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col >
+              <a (click)="registrar()">
+                {{ "global.buttons.register" | translate }}
+              </a>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
     </ion-card-content>
   </ion-card>  
 </ion-content>

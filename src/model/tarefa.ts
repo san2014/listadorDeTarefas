@@ -2,7 +2,7 @@ import { EstadoTarefa } from "./estado-tarefa";
 
 export class Tarefa {
 
-    codigo: number;
+    keyReference: string;
 
     titulo: string;
 

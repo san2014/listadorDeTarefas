@@ -1,9 +1,10 @@
 import { Credencial } from './../../model/credencial';
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, MenuController } from 'ionic-angular';
 import { Registrar } from "../registrar/registrar";
 import { LoginProvider } from './../../providers/login-provider';
 import { TarefasList } from './../tarefas-list/tarefas-list';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -14,22 +15,48 @@ export class Login {
 
   public credencial: Credencial
 
+  public loginForm: FormGroup
+
   constructor(
       public navCtrl: NavController,
-      public loginProvider: LoginProvider) {
+      public loginProvider: LoginProvider,
+      public menuCtrl: MenuController,
+      public fb: FormBuilder) {
 
-      this.ionViewDidLoad();
+      this.initialize();
   }
 
-  
-  ionViewDidLoad(){
+  private initialize(){
 
     this.credencial = new Credencial();
 
-    console.log('init app');
+    this.loginForm = this.fb.group({
+      'email': ['', Validators.compose([Validators.required, Validators.email])],
+      'senha': ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+    });    
+
+  }  
+
+  ionViewDidEnter(){
+    
+    this.menuCtrl.enable(false);
+    
+    this.menuCtrl.swipeEnable(false);
+
+  }
+
+  ionViewDidLoad(){
 
     this.loginProvider.loginSucessoEventEmitter.subscribe(
-      user => this.navCtrl.setRoot(TarefasList),
+      user => {
+
+        this.menuCtrl.enable(true);
+        
+        this.menuCtrl.swipeEnable(true);    
+
+        this.navCtrl.setRoot(TarefasList)
+
+      },
       error => console.log(error)
     )
 

@@ -4,13 +4,12 @@ import 'rxjs/add/operator/map';
 
 import firebase from 'firebase'
 import { Credencial } from './../model/credencial';
-import { Usuario } from "../model/usuario";
 import { Tarefa } from "../model/tarefa";
 
 @Injectable()
 export class LoginProvider {
 
-  currentUser: Usuario;
+  currentUser: any;
 
   autenticado: boolean;
 
@@ -30,7 +29,7 @@ export class LoginProvider {
 
     this.logouEventEmitter = new EventEmitter();
 
-    firebase.auth().onAuthStateChanged(usuario => {
+    firebase.auth().onAuthStateChanged(usuario  => {
 
       this.callbackStateChange(usuario);
 
@@ -42,6 +41,8 @@ export class LoginProvider {
 
     this.ngZone.run(() => {
       if (usuario == null) {
+
+        console.log('nao temos usuario');
 
         this.currentUser = null;
 
@@ -110,10 +111,5 @@ export class LoginProvider {
       .then(() => this.logouEventEmitter.emit(true))
       .catch(error => this.callbackFalhaLogin(error));
   }
-
-  adicionar(tarefa: Tarefa){
-    
-  }
-
 
 }

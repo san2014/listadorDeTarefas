@@ -1,0 +1,29 @@
+{
+    "global": {
+        "buttons": {
+            "login": "Login",
+            "login_facebook": "Sign in with Faceook",
+            "login_google": "Sign in with Google",
+            "register": "Registrer"
+        },
+        "inputs": {
+            "email": "E-mail",
+            "password": "Password"
+        },
+
+        "labels": {
+            "pt_BR": "Portuguese",
+            "en_US": "English (USA)"
+        }
+
+    },
+
+    "pages": {
+        "login": {
+            "title": "Sign in"
+        },
+        "linguagem": {
+            "title": "Language"
+        }
+    }
+}

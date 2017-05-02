@@ -8,7 +8,7 @@ export class LovProvider {
 
   getTarefasState(): Array<EstadoTarefa>{
 
-    return [EstadoTarefa.NOVA, EstadoTarefa.EXECUTANDO, EstadoTarefa.FINALIZANDO];
+    return [EstadoTarefa.NOVA, EstadoTarefa.EXECUTANDO, EstadoTarefa.FINALIZADA];
 
   }
 
